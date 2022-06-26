@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:27:23 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/25 02:31:45 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:45:42 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	ft_check_format(char *format, char *new_str, int *i)
 {
 	t_bool	width_bool;
 	int		width_value;
-	int		*index;
+	int		index[1];
 
+	(void) new_str;
 	width_bool = FALSE;
 	width_value = 0;
 	*index = 1;
