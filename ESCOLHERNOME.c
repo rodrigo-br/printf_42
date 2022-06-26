@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 01:48:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/25 02:40:45 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:14:02 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	*specifier_upper_hexadecimal(t_flags *flags, t_bool *end)
 	return (NULL);
 }
 
-void	*ft_ite_spcf(void *(*f)(t_flags*, t_bool*), t_flags *flags, t_bool *end)
+void	*ft_ite_spf(void *(*f)(t_flags*, t_bool*), t_flags *flags, t_bool *end)
 {
 	return (f(flags, end));
 }
@@ -135,26 +135,13 @@ int		ft_runner_spcf(void)
 	t_flags		flags;
 	t_bool		end;
 	int			index;
-	void		*specifiers_caller[9];
+	void		**specifiers_caller;
 
 	end = FALSE;
-	flags.bool_space = FALSE;
-	flags.bool_zero = FALSE;
-	flags.bool_hash = FALSE;
-	flags.bool_dot = FALSE;
-	flags.bool_minus = FALSE;
-	flags.bool_plus = FALSE;
-	specifiers_caller[0] = specifier_char;
-	specifiers_caller[1] = specifier_string;
-	specifiers_caller[2] = specifier_decimal;
-	specifiers_caller[3] = specifier_pointer;
-	specifiers_caller[4] = specifier_integer;
-	specifiers_caller[5] = specifier_unsigned_decimal;
-	specifiers_caller[6] = specifier_lower_hexadecimal;
-	specifiers_caller[7] = specifier_upper_hexadecimal;
-	specifiers_caller[8] = 0;
+	flags = ft_init_flags();
+	specifiers_caller = ft_init_caller();
 	index = 0;
 	while (specifiers_caller[index] && !end)
-		ft_ite_spcf(specifiers_caller[index++], &flags, &end);
+		ft_ite_spf(specifiers_caller[index++], &flags, &end);
 	return (0);
 }

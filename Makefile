@@ -17,7 +17,7 @@ SRC			=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
 				./libft/ft_lstmap.c
 
 SRC_2		=	ESCOLHERNOME.c ft_count_placeholders.c ft_isformat.c \
-				ft_isspecifiers.c ft_printf.c \
+				ft_isspecifiers.c ft_printf.c ft_initializers.c \
 
 H_SRC		=	./libft/libft.h printf.h
 

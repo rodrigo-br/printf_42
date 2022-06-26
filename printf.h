@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 15:34:56 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:12:43 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,31 @@ void	ft_check_format(char *format, char *new_str, int *i);
  */
 char	*ft_count_placeholders(char *format);
 
+/**
+ * @brief at file ft_initializers.c
+ * 
+ */
+t_flags	ft_init_flags(void);
+
+/**
+ * @brief at file ft_initializers.c
+ * 
+ * @return void* 
+ */
+void **ft_init_caller(void);
+
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
 // ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-void	*placeholder_char(void);
-void	*placeholder_string(void);
-void	*placeholder_decimal(void);
-void	*placeholder_pointer(void);
-void	*placeholder_integer(void);
-void	*placeholder_unsigned_decimal(void);
-void	*placeholder_lower_hexadecimal(void);
-void	*placeholder_upper_hexadecimal(void);
-void	*pick_placeholder(void *(*f)(void));
+void	*specifier_char(t_flags *flags, t_bool *end);
+void	*specifier_string(t_flags *flags, t_bool *end);
+void	*specifier_decimal(t_flags *flags, t_bool *end);
+void	*specifier_pointer(t_flags *flags, t_bool *end);
+void	*specifier_integer(t_flags *flags, t_bool *end);
+void	*specifier_unsigned_decimal(t_flags *flags, t_bool *end);
+void	*specifier_lower_hexadecimal(t_flags *flags, t_bool *end);
+void	*specifier_upper_hexadecimal(t_flags *flags, t_bool *end);
+void	*ft_ite_spf(void *(*f)(t_flags*, t_bool*), t_flags *flags, t_bool *end);
 // --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
 
 #endif
