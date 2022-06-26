@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 16:34:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:16:24 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_printf(const char *format, ...)
 	printf("%d\n", va_arg(args, int));
 	printf("%f\n", va_arg(args, double));
 	va_end(args);
-
 	return (0);
 }
 
