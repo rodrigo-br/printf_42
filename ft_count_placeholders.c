@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:27:23 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 14:45:42 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:32:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@ void	ft_check_format(char *format, char *new_str, int *i)
 	width_bool = FALSE;
 	width_value = 0;
 	*index = 1;
-	if (ft_widthon(width_bool, format[*index]))
+	while (ft_isformat(format[*index], &width_bool) && format[*index])
 	{
-		while (ft_isdigit(format[*index]))
+		if (width_bool)
 		{
-			width_value = width_value * 10 + (format[*index] - '0');
-			*index = *index + 1;
+			while (ft_isdigit(format[*index]))
+			{
+				width_value = width_value * 10 + (format[*index] - '0');
+				*index = *index + 1;
+			}
+			printf("width_value = %d\n", width_value);
+			width_bool = FALSE;
 		}
+		*index = *index + 1;
 	}
 	*i = *i + *index;
 }

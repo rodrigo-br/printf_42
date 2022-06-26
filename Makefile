@@ -23,7 +23,7 @@ H_SRC		=	./libft/libft.h printf.h
 
 OBJS		=	${SRC:.c=.o} ${SRC_2:.c=.o}
 
-NAME		=	libft.a
+NAME		=	libftprintf.a
 
 FLAGS		=	-Wall -Wextra -Werror
 

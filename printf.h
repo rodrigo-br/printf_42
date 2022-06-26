@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 14:30:35 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:34:56 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
+/**
+ * @brief 'Boolean expression' to turn switches on and off
+ * 
+ */
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }	t_bool;
 
+/**
+ * @brief switches to be turned on and off
+ * 
+ */
 typedef struct s_flags
 {
 	t_bool	bool_space;
@@ -34,14 +42,67 @@ typedef struct s_flags
 	t_bool	bool_width;
 }	t_flags;
 
+/**
+ * @brief at file ft_printf.c
+ * 
+ * @param format 
+ * @param ... 
+ * @return int 
+ */
 int		ft_printf(const char *format, ...);
+
+/**
+ * @brief at file ft_isspecifiers.c
+ * 
+ * @param c 
+ * @return t_bool 
+ */
 t_bool	ft_isspecifiers(char c);
-t_bool	ft_widthon(t_bool width, char c);
+
+/**
+ * @brief at file ft_isformat.c
+ * 
+ * @param width 
+ * @param c 
+ * @return t_bool 
+ */
+t_bool	ft_widthon(t_bool *width, char c);
+
+/**
+ * @brief at file ft_isformat.c
+ * 
+ * @param c 
+ * @return t_bool 
+ */
+t_bool	ft_isformat(char c, t_bool *width);
+
+/**
+ * @brief at file ESCOLHERNOME.c
+ * 
+ * @return int 
+ */
 int		ft_runner_spcf(void);
+
+/**
+ * @brief at file ft_count_placeholders.c
+ * 
+ * @param format 
+ * @param new_str 
+ * @param i 
+ */
+void	ft_check_format(char *format, char *new_str, int *i);
+
+/**
+ * @brief at file ft_count_placeholders.c
+ * 
+ * @param format 
+ * @return char* 
+ */
+char	*ft_count_placeholders(char *format);
 
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
-
+// ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
 void	*placeholder_char(void);
 void	*placeholder_string(void);
 void	*placeholder_decimal(void);
@@ -51,7 +112,6 @@ void	*placeholder_unsigned_decimal(void);
 void	*placeholder_lower_hexadecimal(void);
 void	*placeholder_upper_hexadecimal(void);
 void	*pick_placeholder(void *(*f)(void));
-
-//--------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
+// --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
 
 #endif
