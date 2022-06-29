@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:38:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 18:17:09 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/29 21:52:36 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,23 @@ t_flags	ft_init_flags(void)
 	flags.bool_dot = FALSE;
 	flags.bool_minus = FALSE;
 	flags.bool_plus = FALSE;
+	flags.bool_width = FALSE;
+	flags.bool_end = FALSE;
 	return (flags);
 }
 
 void	**ft_init_caller(void)
 {
 	void	**specifiers_caller;
+	int		index;
 
-	specifiers_caller = (void **)malloc(9);
+	index = 0;
+	specifiers_caller = malloc(sizeof(&specifier_char) * 9);
+	while (index < 9)
+	{
+		specifiers_caller[index] = malloc(sizeof(&specifier_char));
+		index++;
+	}
 	specifiers_caller[0] = specifier_char;
 	specifiers_caller[1] = specifier_string;
 	specifiers_caller[2] = specifier_decimal;

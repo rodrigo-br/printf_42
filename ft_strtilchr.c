@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strtilchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/29 17:25:35 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/06/29 17:09:10 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/06/29 17:18:54 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "printf.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_strtilchr(const char *s, int c)
 {
-	va_list	args;
-	char	*string_formated;
+	char	*new_str;
+	size_t	index;
 
-	va_start(args, format);
-	string_formated = ft_count_placeholders((char *)format, args);
-	va_end(args);
-	ft_putstr_fd(string_formated, 1);
-	return (ft_strlen(string_formated));
+	if (ft_strchr(s, c))
+		index = ft_strchr(s, c) - s;
+	else
+		return (ft_strdup(s));
+	new_str = ft_substr(s, 0, index);
+	return (new_str);
 }

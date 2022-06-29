@@ -6,14 +6,14 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:27:23 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 15:32:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/29 21:53:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <stdio.h>
 
-void	ft_check_format(char *format, char *new_str, int *i)
+void	ft_check_format(const char *format, char *new_str, int *i)
 {
 	t_bool	width_bool;
 	int		width_value;
@@ -32,7 +32,6 @@ void	ft_check_format(char *format, char *new_str, int *i)
 				width_value = width_value * 10 + (format[*index] - '0');
 				*index = *index + 1;
 			}
-			printf("width_value = %d\n", width_value);
 			width_bool = FALSE;
 		}
 		*index = *index + 1;
@@ -40,32 +39,23 @@ void	ft_check_format(char *format, char *new_str, int *i)
 	*i = *i + *index;
 }
 
-char	*ft_count_placeholders(char *format)
+char	*ft_count_placeholders(const char *format, va_list args)
 {
 	int		index_format;
-	int		index_aux;
 	char	*new_str;
 	char	*aux;
+	(void)	args;
 
-	aux = (char *)malloc(sizeof(char) * ft_strlen(format) + 1);
 	index_format = 0;
-	index_aux = 0;
+	aux = ft_strtilchr(format, '%');
 	while (format[index_format])
 	{
 		if (format[index_format] == '%')
 			ft_check_format(&format[index_format], aux, &index_format);
-		aux[index_aux] = format[index_format];
 		index_format++;
-		index_aux++;
 	}
-	aux[index_aux] = '\0';
 	new_str = ft_strdup(aux);
 	free(aux);
 	return (new_str);
 }
-
-// int	main(void)
-// {
-// 	printf("%s\n", ft_count_placeholders("caval%200inho"));
-// 	return (0);
-// }
+// SOCORRO O QUE EU TÔ FAZENDO? D:

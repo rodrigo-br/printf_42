@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/26 18:16:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:22:09 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "libft/libft.h"
+# include <stdio.h> // APAGAR ESSA DISGRAMA!
 
 /**
  * @brief 'Boolean expression' to turn switches on and off
@@ -40,6 +41,7 @@ typedef struct s_flags
 	t_bool	bool_minus;
 	t_bool	bool_plus;
 	t_bool	bool_width;
+	t_bool	bool_end;
 }	t_flags;
 
 /**
@@ -90,7 +92,7 @@ int		ft_runner_spcf(void);
  * @param new_str 
  * @param i 
  */
-void	ft_check_format(char *format, char *new_str, int *i);
+void	ft_check_format(const char *format, char *new_str, int *i);
 
 /**
  * @brief at file ft_count_placeholders.c
@@ -98,7 +100,7 @@ void	ft_check_format(char *format, char *new_str, int *i);
  * @param format 
  * @return char* 
  */
-char	*ft_count_placeholders(char *format);
+char	*ft_count_placeholders(const char *format, va_list args);
 
 /**
  * @brief at file ft_initializers.c
@@ -116,15 +118,15 @@ void	**ft_init_caller(void);
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
 // ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-void	*specifier_char(t_flags *flags, t_bool *end);
-void	*specifier_string(t_flags *flags, t_bool *end);
-void	*specifier_decimal(t_flags *flags, t_bool *end);
-void	*specifier_pointer(t_flags *flags, t_bool *end);
-void	*specifier_integer(t_flags *flags, t_bool *end);
-void	*specifier_unsigned_decimal(t_flags *flags, t_bool *end);
-void	*specifier_lower_hexadecimal(t_flags *flags, t_bool *end);
-void	*specifier_upper_hexadecimal(t_flags *flags, t_bool *end);
-void	*ft_ite_spf(void *(*f)(t_flags*, t_bool*), t_flags *flags, t_bool *end);
+void	*specifier_char(t_flags *flags);
+void	*specifier_string(t_flags *flags);
+void	*specifier_decimal(t_flags *flags);
+void	*specifier_pointer(t_flags *flags);
+void	*specifier_integer(t_flags *flags);
+void	*specifier_unsigned_decimal(t_flags *flags);
+void	*specifier_lower_hexadecimal(t_flags *flags);
+void	*specifier_upper_hexadecimal(t_flags *flags);
+void	*ft_ite_spf(void *(*f)(t_flags*), t_flags *flags);
 // --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
 
 #endif
