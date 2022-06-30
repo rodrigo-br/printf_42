@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 01:48:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/29 18:26:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/30 04:38:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 void	*specifier_char(t_flags *flags)
 {
-	t_bool	chr;
-
-	chr = TRUE;
-	if (chr)
+	if (flags->spfc == 'c')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um char\n");
@@ -26,12 +23,9 @@ void	*specifier_char(t_flags *flags)
 	return (NULL);
 }
 
-void	*specifier_string(t_flags *flags)
+char	*specifier_string(t_flags *flags)
 {
-	t_bool	str;
-
-	str = TRUE;
-	if (str)
+	if (flags->spfc == 's')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou uma string\n");
@@ -41,10 +35,7 @@ void	*specifier_string(t_flags *flags)
 
 void	*specifier_decimal(t_flags *flags)
 {
-	t_bool	decimal;
-
-	decimal = FALSE;
-	if (decimal)
+	if (flags->spfc == 'd')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um decimal\n");
@@ -54,10 +45,7 @@ void	*specifier_decimal(t_flags *flags)
 
 void	*specifier_pointer(t_flags *flags)
 {
-	t_bool	pointer;
-
-	pointer = FALSE;
-	if (pointer)
+	if (flags->spfc == 'p')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um pointer\n");
@@ -67,10 +55,7 @@ void	*specifier_pointer(t_flags *flags)
 
 void	*specifier_integer(t_flags *flags)
 {
-	t_bool	integer;
-
-	integer = FALSE;
-	if (integer)
+	if (flags->spfc == 'i')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um inteiro\n");
@@ -80,10 +65,7 @@ void	*specifier_integer(t_flags *flags)
 
 void	*specifier_unsigned_decimal(t_flags *flags)
 {
-	t_bool	udecimal;
-
-	udecimal = FALSE;
-	if (udecimal)
+	if (flags->spfc == 'u')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um decimal unsigned\n");
@@ -93,10 +75,7 @@ void	*specifier_unsigned_decimal(t_flags *flags)
 
 void	*specifier_lower_hexadecimal(t_flags *flags)
 {
-	t_bool	l_hex;
-
-	l_hex = FALSE;
-	if (l_hex)
+	if (flags->spfc == 'x')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um hexadecimal minúsculo\n");
@@ -106,10 +85,7 @@ void	*specifier_lower_hexadecimal(t_flags *flags)
 
 void	*specifier_upper_hexadecimal(t_flags *flags)
 {
-	t_bool	u_hex;
-
-	u_hex = FALSE;
-	if (u_hex)
+	if (flags->spfc == 'X')
 	{
 		flags->bool_end = TRUE;
 		printf("enviou um hexadecimal maiúsculo\n");
@@ -117,21 +93,23 @@ void	*specifier_upper_hexadecimal(t_flags *flags)
 	return (NULL);
 }
 
-void	*ft_ite_spf(void *(*f)(t_flags*), t_flags *flags)
+void	*ft_ite_spf(void *(*f)(t_flags*), t_flags *flags, char *s,\
+						char *format_parsed, va_list args)
 {
-	return (f(flags));
+	return (f(flags, s, format_parsed, args));
 }
-
-int		ft_runner_spcf(void)
+// Q Q CE TA FAZENDO, MANO?
+int		ft_runner_spcf(char *s, char *format_parsed, va_list args)
 {
 	t_flags		flags;
 	int			index;
 	void		**specifiers_caller;
 
-	flags = ft_init_flags();
+	flags = ft_init_flags(format_parsed);
 	specifiers_caller = ft_init_caller();
 	index = 0;
 	while (specifiers_caller[index] && !flags.bool_end)
-		ft_ite_spf(specifiers_caller[index++], &flags);
+		ft_ite_spf(specifiers_caller[index++], &flags, s, format_parsed, args);
 	return (0);
 }
+// E agora, véi?

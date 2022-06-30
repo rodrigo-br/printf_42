@@ -6,24 +6,36 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:38:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/29 21:52:36 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/30 04:53:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-t_flags	ft_init_flags(void)
+t_flags	ft_init_flags(const char *format_parsed)
 {
 	t_flags	flags;
+	t_bool	width_bool;
+	int		index;
 
-	flags.bool_space = FALSE;
-	flags.bool_zero = FALSE;
-	flags.bool_hash = FALSE;
-	flags.bool_dot = FALSE;
-	flags.bool_minus = FALSE;
-	flags.bool_plus = FALSE;
-	flags.bool_width = FALSE;
-	flags.bool_end = FALSE;
+	width_bool = FALSE;
+	index = -1;
+	while (ft_isformat(format_parsed[++index], &width_bool))
+	{
+		if (format_parsed[index] == ' ')
+			flags.bool_space = TRUE;
+		if (format_parsed[index] == '0')
+			flags.bool_zero = TRUE;
+		if (format_parsed[index] == '#')
+			flags.bool_hash = TRUE;
+		if (format_parsed[index] == '.')
+			flags.bool_dot = TRUE;
+		if (format_parsed[index] == '-')
+			flags.bool_minus = TRUE;
+		if (format_parsed[index] == '+')
+			flags.bool_plus = TRUE;
+	}
+	flags.spfc = format_parsed[index]
 	return (flags);
 }
 
