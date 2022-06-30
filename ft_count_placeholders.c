@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:27:23 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/30 16:04:06 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:14:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*ft_count_placeholders(const char *format, va_list args)
 		{
 			ft_runner_spcf(&aux, &format[index_format], args);
 			ft_check_format(&format[index_format], aux, &index_format);
+			aux = ft_strjoin(aux, ft_strtilchr(&format[index_format + 1], '%'));
 		}
 		index_format++;
 	}

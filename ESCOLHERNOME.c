@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 01:48:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/30 16:09:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:32:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*specifier_pointer(t_flags *flags, char **s, va_list args)
 	if (flags->spcf == 'p')
 	{
 		i = ft_ptoi(va_arg(args, void *));
+		*s = ft_strjoin(*s, "0x");
 		*s = ft_strjoin(*s, ft_itohex(i));
 		flags->bool_end = TRUE;
 		printf("enviou um pointer\n");
