@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/30 04:52:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:07:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_flags
 	t_bool	bool_minus;
 	t_bool	bool_plus;
 	t_bool	bool_end;
-	char	spfc;
+	char	spcf;
 }	t_flags;
 
 /**
@@ -83,7 +83,7 @@ t_bool	ft_isformat(char c, t_bool *width);
  * 
  * @return int 
  */
-int		ft_runner_spcf(void);
+int		ft_runner_spcf(char **s, const char *format_parsed, va_list args);
 
 /**
  * @brief at file ft_count_placeholders.c
@@ -106,7 +106,7 @@ char	*ft_count_placeholders(const char *format, va_list args);
  * @brief at file ft_initializers.c
  * 
  */
-t_flags	ft_init_flags(void);
+t_flags	ft_init_flags(const char *format_parsed);
 
 /**
  * @brief at file ft_initializers.c
@@ -115,18 +115,25 @@ t_flags	ft_init_flags(void);
  */
 void	**ft_init_caller(void);
 
+/**
+ * @brief at ft_initializer.c
+ * 
+ * @param flags 
+ */
+void ft_turn_false(t_flags *flags);
+
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
 // ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-void	*specifier_char(t_flags *flags);
-void	*specifier_string(t_flags *flags);
-void	*specifier_decimal(t_flags *flags);
-void	*specifier_pointer(t_flags *flags);
-void	*specifier_integer(t_flags *flags);
-void	*specifier_unsigned_decimal(t_flags *flags);
-void	*specifier_lower_hexadecimal(t_flags *flags);
-void	*specifier_upper_hexadecimal(t_flags *flags);
-void	*ft_ite_spf(void *(*f)(t_flags*), t_flags *flags);
+char	*specifier_char(t_flags *flags, char **s, va_list args);
+char	*specifier_string(t_flags *flags, char **s, va_list args);
+char	*specifier_decimal(t_flags *flags, char **s, va_list args);
+char	*specifier_pointer(t_flags *flags, char **s, va_list args);
+char	*specifier_integer(t_flags *flags, char **s, va_list args);
+char	*specifier_unsigned_decimal(t_flags *flags, char **s, va_list args);
+char	*specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args);
+char	*specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args);
+void	*ft_ite_spf(void *(*f)(t_flags*, char**, va_list),\
+						t_flags *flags, char **s, va_list args);
 // --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
-
 #endif

@@ -6,11 +6,22 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:38:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/30 04:53:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:01:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+void ft_turn_false(t_flags *flags)
+{
+	flags->bool_space = FALSE;
+	flags->bool_zero = FALSE;
+	flags->bool_hash = FALSE;
+	flags->bool_dot = FALSE;
+	flags->bool_minus = FALSE;
+	flags->bool_plus = FALSE;
+	flags->bool_end = FALSE;
+}
 
 t_flags	ft_init_flags(const char *format_parsed)
 {
@@ -18,6 +29,7 @@ t_flags	ft_init_flags(const char *format_parsed)
 	t_bool	width_bool;
 	int		index;
 
+	ft_turn_false(&flags);
 	width_bool = FALSE;
 	index = -1;
 	while (ft_isformat(format_parsed[++index], &width_bool))
@@ -35,7 +47,7 @@ t_flags	ft_init_flags(const char *format_parsed)
 		if (format_parsed[index] == '+')
 			flags.bool_plus = TRUE;
 	}
-	flags.spfc = format_parsed[index]
+	flags.spcf = format_parsed[index];
 	return (flags);
 }
 
