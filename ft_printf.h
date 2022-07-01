@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/30 16:07:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:31:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdarg.h>
@@ -121,6 +121,7 @@ void	**ft_init_caller(void);
  * @param flags 
  */
 void ft_turn_false(t_flags *flags);
+
 
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//

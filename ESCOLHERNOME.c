@@ -6,11 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 01:48:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/01 01:32:08 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/01 20:00:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 char	*specifier_char(t_flags *flags, char **s, va_list args)
@@ -41,9 +41,16 @@ char	*specifier_string(t_flags *flags, char **s, va_list args)
 
 char	*specifier_decimal(t_flags *flags, char **s, va_list args)
 {
+	char	*temp;
+	char	*temp_2;
+
 	if (flags->spcf == 'd')
 	{
-		*s = ft_strjoin(*s, ft_itoa(va_arg(args, int)));
+		temp_2 = ft_itoa(va_arg(args, int));
+		temp = ft_strjoin(*s, temp_2);
+		free(*s);
+		free(temp_2);
+		*s = temp;
 		flags->bool_end = TRUE;
 		printf("enviou um decimal\n");
 	}
@@ -53,11 +60,19 @@ char	*specifier_decimal(t_flags *flags, char **s, va_list args)
 char	*specifier_pointer(t_flags *flags, char **s, va_list args)
 {
 	unsigned long int	i;
+	char				*temp_ox;
+	char				*temp_hex;
+	char				*temp_2;
 	if (flags->spcf == 'p')
 	{
 		i = ft_ptoi(va_arg(args, void *));
-		*s = ft_strjoin(*s, "0x");
-		*s = ft_strjoin(*s, ft_itohex(i));
+		temp_hex = ft_itohex(i);
+		temp_ox = ft_strjoin("0x", temp_hex);
+		free(temp_hex);
+		temp_2 = ft_strjoin(*s, temp_ox);
+		free(*s);
+		free(temp_ox);
+		*s = temp_2;
 		flags->bool_end = TRUE;
 		printf("enviou um pointer\n");
 	}
@@ -66,9 +81,16 @@ char	*specifier_pointer(t_flags *flags, char **s, va_list args)
 
 char	*specifier_integer(t_flags *flags, char **s, va_list args)
 {
+	char	*temp;
+	char	*temp_2;
+
 	if (flags->spcf == 'i')
 	{
-		*s = ft_strjoin(*s, ft_itoa(va_arg(args, int)));
+		temp_2 = ft_itoa(va_arg(args, int));
+		temp = ft_strjoin(*s, temp_2);
+		free(*s);
+		free(temp_2);
+		*s = temp;
 		flags->bool_end = TRUE;
 		printf("enviou um inteiro\n");
 	}
@@ -77,9 +99,16 @@ char	*specifier_integer(t_flags *flags, char **s, va_list args)
 
 char	*specifier_unsigned_decimal(t_flags *flags, char **s, va_list args)
 {
+	char	*temp;
+	char	*temp_itoa;
+
 	if (flags->spcf == 'u')
 	{
-		*s = ft_strjoin(*s, ft_itoa(va_arg(args, int)));
+		temp_itoa = ft_itoa(va_arg(args, int));
+		temp = ft_strjoin(*s, temp_itoa);
+		free(*s);
+		free(temp_itoa);
+		*s = temp;
 		flags->bool_end = TRUE;
 		printf("enviou um decimal unsigned\n");
 	}
@@ -88,9 +117,16 @@ char	*specifier_unsigned_decimal(t_flags *flags, char **s, va_list args)
 
 char	*specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args)
 {
+	char	*temp_hex;
+	char	*temp;
+
 	if (flags->spcf == 'x')
 	{
-		*s = ft_strjoin(*s, ft_itohex(va_arg(args, int)));
+		temp_hex = ft_itohex(va_arg(args, int));
+		temp = ft_strjoin(*s, temp_hex);
+		free(temp_hex);
+		free(*s);
+		*s = temp;
 		flags->bool_end = TRUE;
 		printf("enviou um hexadecimal minúsculo\n");
 	}
@@ -99,19 +135,17 @@ char	*specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args)
 
 char	*specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args)
 {
-	char	*hex;
+	char	*temp_hex;
+	char	*temp;
 	int		index;
 	if (flags->spcf == 'X')
 	{
 		index = 0;
-		hex = ft_itohex(va_arg(args, int));
-		while (hex[index])
-		{
-			if (ft_isalpha(hex[index]))
-				hex[index] = ft_toupper(hex[index]);
-			index++;
-		}
-		*s = ft_strjoin(*s, hex);
+		temp_hex = ft_itohex(va_arg(args, int));
+		temp = ft_strjoin(*s, ft_strtoupper(temp_hex));
+		free(*s);
+		free(temp_hex);
+		*s = temp;
 		flags->bool_end = TRUE;
 		printf("enviou um hexadecimal maiúsculo\n");
 	}

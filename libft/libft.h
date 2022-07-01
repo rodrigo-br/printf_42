@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:46:38 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/06/29 21:48:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:02:17 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -532,5 +532,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 char				*ft_itohex(unsigned	long int nb);
 unsigned long int	ft_ptoi(void *pointer);
 char				*ft_strtilchr(const char *s, int c);
+char				*ft_strtoupper(char *s);
 
 #endif

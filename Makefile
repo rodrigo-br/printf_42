@@ -18,9 +18,9 @@ SRC		=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
 
 SRC_2	=	ESCOLHERNOME.c ft_count_placeholders.c ft_isformat.c \
 			ft_isspecifiers.c ft_printf.c ft_initializers.c ft_itohex.c \
-			ft_ptoi.c ft_strtilchr.c \
+			ft_ptoi.c ft_strtilchr.c ft_strtoupper.c \
 
-H_SRC	=	./libft/libft.h printf.h
+H_SRC	=	./libft/libft.h ft_printf.h
 
 OBJS	=	${SRC:.c=.o} ${SRC_2:.c=.o}
 

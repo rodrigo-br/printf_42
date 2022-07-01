@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtilchr.c                                     :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 17:09:10 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/01 18:44:15 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/01 17:56:20 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/07/01 18:44:17 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strtilchr(const char *s, int c)
+char	*ft_strtoupper(char *s)
 {
-	char	*new_str;
-	size_t	index;
+	int	index;
 
-	if (ft_strchr(s, c))
-		index = ft_strchr(s, c) - s;
-	else
-		return (ft_strdup(s));
-	new_str = ft_substr(s, 0, index);
-	return (new_str);
+	index = 0;
+	while (s[index])
+	{
+		if (ft_isalpha(s[index]))
+			s[index] = ft_toupper(s[index]);
+		index++;
+	}
+	return (s);
 }
