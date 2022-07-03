@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmemjoin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/03 15:15:42 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/03 14:34:04 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/07/03 16:52:56 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_strmemjoin(void *s1, void *s2, size_t size_s1, size_t size_s2)
 {
-	va_list	args;
-	char	*string_formated;
-	int		count;
+	unsigned char	*aux_s2;
+	unsigned char	*new_str;
 
-	count = ft_strlen(ft_strtilchr(format, '%'));
-	va_start(args, format);
-	string_formated = ft_count_placeholders((char *)format, args, &count);
-	va_end(args);
-	write(1, string_formated, count);
-	free(string_formated);
-	return (count);
+	aux_s2 = (unsigned char *)s2;
+	new_str = (unsigned char *)ft_calloc(sizeof(char), (size_s1 + size_s2 + 1));
+	ft_memcpy(new_str, s1, size_s1);
+	ft_memcpy(new_str + size_s1, aux_s2, size_s2);
+	free(s1);
+	return (new_str);
 }
+// cavalinho, 0,  ao vento, 0

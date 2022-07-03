@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/02 17:27:22 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:41:28 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_bool	ft_isformat(char c, t_bool *width);
  * 
  * @return int 
  */
-int		ft_runner_spcf(char ***s, const char *format_parsed, va_list args);
+int		ft_runner_spcf(char ***s, const char *format_parsed, va_list args, int size_count);
 
 /**
  * @brief at file ft_count_placeholders.c
@@ -123,18 +123,19 @@ void	**ft_init_caller(void);
 void ft_turn_false(t_flags *flags);
 int	doidera(char **a, const char *format, va_list args, int *index_format);
 int segunda_doidera(char **a, const char *format, int index_format);
+void	*ft_strmemjoin(void *dest, void *src, size_t size_dest, size_t size_src);
 
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
 // ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-int	specifier_char(t_flags *flags, char **s, va_list args);
-int	specifier_string(t_flags *flags, char **s, va_list args);
-int	specifier_decimal(t_flags *flags, char **s, va_list args);
-int	specifier_pointer(t_flags *flags, char **s, va_list args);
-int	specifier_integer(t_flags *flags, char **s, va_list args);
-int	specifier_unsigned_decimal(t_flags *flags, char **s, va_list args);
-int	specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args);
-int	specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args);
+int	specifier_char(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_string(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_decimal(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_pointer(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_integer(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_unsigned_decimal(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args, int size_count);
+int	specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args, int size_count);
 // --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
 
 #endif
