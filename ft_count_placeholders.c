@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:27:23 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/03 17:26:56 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:29:02 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_count_placeholders(const char *format, va_list args, int *count)
 	{
 		if (format[index] == '%' && format[index + 1] != '%')
 		{
-			*count = doidera(&aux, &format[index], args, &index);
+			*count = doidera(&aux, format, args, &index);
 			last_index = index + 1;
 		}
 		else if (format[index] == '%' && format[index + 1] == '%')
