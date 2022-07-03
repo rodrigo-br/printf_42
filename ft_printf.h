@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/01 20:31:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:27:22 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_bool	ft_isformat(char c, t_bool *width);
  * 
  * @return int 
  */
-int		ft_runner_spcf(char **s, const char *format_parsed, va_list args);
+int		ft_runner_spcf(char ***s, const char *format_parsed, va_list args);
 
 /**
  * @brief at file ft_count_placeholders.c
@@ -92,7 +92,7 @@ int		ft_runner_spcf(char **s, const char *format_parsed, va_list args);
  * @param new_str 
  * @param i 
  */
-void	ft_check_format(const char *format, char *new_str, int *i);
+int	ft_check_format(const char *format, int *i);
 
 /**
  * @brief at file ft_count_placeholders.c
@@ -100,7 +100,7 @@ void	ft_check_format(const char *format, char *new_str, int *i);
  * @param format 
  * @return char* 
  */
-char	*ft_count_placeholders(const char *format, va_list args);
+char	*ft_count_placeholders(const char *format, va_list args, int *count);
 
 /**
  * @brief at file ft_initializers.c
@@ -121,20 +121,20 @@ void	**ft_init_caller(void);
  * @param flags 
  */
 void ft_turn_false(t_flags *flags);
-
+int	doidera(char **a, const char *format, va_list args, int *index_format);
+int segunda_doidera(char **a, const char *format, int index_format);
 
 //----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
 // ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
 // ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-char	*specifier_char(t_flags *flags, char **s, va_list args);
-char	*specifier_string(t_flags *flags, char **s, va_list args);
-char	*specifier_decimal(t_flags *flags, char **s, va_list args);
-char	*specifier_pointer(t_flags *flags, char **s, va_list args);
-char	*specifier_integer(t_flags *flags, char **s, va_list args);
-char	*specifier_unsigned_decimal(t_flags *flags, char **s, va_list args);
-char	*specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args);
-char	*specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args);
-void	*ft_ite_spf(void *(*f)(t_flags*, char**, va_list),\
-						t_flags *flags, char **s, va_list args);
+int	specifier_char(t_flags *flags, char **s, va_list args);
+int	specifier_string(t_flags *flags, char **s, va_list args);
+int	specifier_decimal(t_flags *flags, char **s, va_list args);
+int	specifier_pointer(t_flags *flags, char **s, va_list args);
+int	specifier_integer(t_flags *flags, char **s, va_list args);
+int	specifier_unsigned_decimal(t_flags *flags, char **s, va_list args);
+int	specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args);
+int	specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args);
 // --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
+
 #endif
