@@ -1,4 +1,4 @@
-SRC		=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
+SRC_LIB	=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
 			./libft/ft_isdigit.c ./libft/ft_isprint.c ./libft/ft_memcpy.c \
 			./libft/ft_memset.c ./libft/ft_strlen.c ./libft/ft_isascii.c \
 			./libft/ft_memmove.c ./libft/ft_strlcpy.c ./libft/ft_strlcat.c \
@@ -16,13 +16,14 @@ SRC		=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
 			./libft/ft_lstclear.c ./libft/ft_lstiter.c \
 			./libft/ft_lstmap.c
 
-SRC_2	=	ESCOLHERNOME.c ft_count_placeholders.c ft_isformat.c \
-			ft_isspecifiers.c ft_printf.c ft_initializers.c ft_itohex.c \
-			ft_ptoi.c ft_strtilchr.c ft_strtoupper.c ft_strmemjoin.c \
+SRC_PRNT =	ft_printf.c ft_strtilchr.c handle_char.c ft_initializers.c \
+			ft_isformat.c handle_char.c \
+#			ft_itohex.c \
+			ft_ptoi.c ft_strtoupper.c ft_strmemjoin.c \
 
 H_SRC	=	./libft/libft.h ft_printf.h
 
-OBJS	=	${SRC:.c=.o} ${SRC_2:.c=.o}
+OBJS	=	${SRC_LIB:.c=.o} ${SRC_PRNT:.c=.o}
 
 NAME	=	libftprintf.a
 

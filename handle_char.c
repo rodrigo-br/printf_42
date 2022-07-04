@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspecifiers.c                                  :+:      :+:    :+:   */
+/*   handle_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 15:00:08 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/01 18:44:03 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/04 01:30:46 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/07/04 17:57:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_bool	ft_isspecifiers(char c)
+t_str	handle_char(va_list args, int *count)
 {
-	if (c == 'c'
-		|| c == 's'
-		|| c == 'p'
-		|| c == 'd'
-		|| c == 'i'
-		|| c == 'f'
-		|| c == 'u'
-		|| c == 'x'
-		|| c == 'X')
-		return (TRUE);
-	return (FALSE);
+	t_str 	c;
+	char	temp[2];
+
+	temp[0] = va_arg(args, int);
+	temp[1] = 0;
+	if (temp[0])
+		c.s = ft_strdup(temp);
+	else
+	{
+		c.s = (char *)malloc(sizeof(char) * 1);
+		c.s[0] = '\0';
+	}
+	c.size = 1;
+	*count += c.size;
+	return (c);
 }

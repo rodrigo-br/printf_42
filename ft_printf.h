@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/03 15:41:28 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:34:45 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,12 @@
 # include "libft/libft.h"
 # include <stdio.h> // APAGAR ESSA DISGRAMA!
 
-/**
- * @brief 'Boolean expression' to turn switches on and off
- * 
- */
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }	t_bool;
 
-/**
- * @brief switches to be turned on and off
- * 
- */
 typedef struct s_flags
 {
 	t_bool	bool_space;
@@ -41,101 +33,20 @@ typedef struct s_flags
 	t_bool	bool_minus;
 	t_bool	bool_plus;
 	t_bool	bool_end;
+	int		width_value;
 	char	spcf;
 }	t_flags;
 
-/**
- * @brief at file ft_printf.c
- * 
- * @param format 
- * @param ... 
- * @return int 
- */
+typedef struct s_str
+{
+	int				size;
+	char			*s;
+}	t_str;
+
 int		ft_printf(const char *format, ...);
-
-/**
- * @brief at file ft_isspecifiers.c
- * 
- * @param c 
- * @return t_bool 
- */
-t_bool	ft_isspecifiers(char c);
-
-/**
- * @brief at file ft_isformat.c
- * 
- * @param width 
- * @param c 
- * @return t_bool 
- */
-t_bool	ft_widthon(t_bool *width, char c);
-
-/**
- * @brief at file ft_isformat.c
- * 
- * @param c 
- * @return t_bool 
- */
-t_bool	ft_isformat(char c, t_bool *width);
-
-/**
- * @brief at file ESCOLHERNOME.c
- * 
- * @return int 
- */
-int		ft_runner_spcf(char ***s, const char *format_parsed, va_list args, int size_count);
-
-/**
- * @brief at file ft_count_placeholders.c
- * 
- * @param format 
- * @param new_str 
- * @param i 
- */
-int	ft_check_format(const char *format, int *i);
-
-/**
- * @brief at file ft_count_placeholders.c
- * 
- * @param format 
- * @return char* 
- */
-char	*ft_count_placeholders(const char *format, va_list args, int *count);
-
-/**
- * @brief at file ft_initializers.c
- * 
- */
+void	*ft_strmemjoin(void *s1, void *s2, size_t size_s1, size_t size_s2);
+t_str	handle_char(va_list args, int *count);
 t_flags	ft_init_flags(const char *format_parsed);
-
-/**
- * @brief at file ft_initializers.c
- * 
- * @return void* 
- */
-void	**ft_init_caller(void);
-
-/**
- * @brief at ft_initializer.c
- * 
- * @param flags 
- */
-void ft_turn_false(t_flags *flags);
-int	doidera(char **a, const char *format, va_list args, int *index_format);
-int segunda_doidera(char **a, const char *format, int index_format);
-void	*ft_strmemjoin(void *dest, void *src, size_t size_dest, size_t size_src);
-
-//----------------------INÍCIO DA DOIDERA DA MINHA CABEÇA------------------- //
-// ----------------- VAI DAR CERTO SEUS DESCRENTE MALDITO -------------------//
-// ---------- POR ENQUANTO ESTÃO NO ARQUIVO ESCOLHERNOME.c ------------------//
-int	specifier_char(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_string(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_decimal(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_pointer(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_integer(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_unsigned_decimal(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_lower_hexadecimal(t_flags *flags, char **s, va_list args, int size_count);
-int	specifier_upper_hexadecimal(t_flags *flags, char **s, va_list args, int size_count);
-// --------------- FIM DA DOIDERA DA MINHA CABEÇA -------------------------- //
+t_bool	ft_isformat(char c, t_bool *width);
 
 #endif
