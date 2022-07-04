@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 19:12:01 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:23:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ t_flags flags, int *count)
 		str = handle_n(args, count);
 	else if (flags.spcf == 's')
 		str = handle_str(args, count);
-	// else if (flags.spcf == 'u')
-	// 	handle_unsigned(format, str, args);
+	else if (flags.spcf == 'u')
+		str = handle_unsigned(args, count);
 	// else if (flags.spcf == 'p')
-	// 	handle_pointer(format, str, args);
+	// 	handle_pointer(args, count);
 	// else if (flags.spcf == 'x' || flags.spcf == 'X')
-	// 	handle_hex(format, str, args);
+	// 	handle_hex(args, count);
 	// else if (flags.spcf == '%')
-		// handle_ph(format, str, args);
-	// check_flags(format, str, args, flags);
+		// handle_ph(args, count);
 	return (str);
 }
 
