@@ -17,9 +17,9 @@ SRC_LIB	=	./libft/ft_bzero.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c \
 			./libft/ft_lstmap.c
 
 SRC_PRNT =	ft_printf.c ft_strtilchr.c handle_char.c ft_initializers.c \
-			ft_isformat.c handle_char.c handle_n.c handle_str.c \
-			handle_unsigned.c
-#			ft_itohex.c ft_ptoi.c ft_strtoupper.c ft_strmemjoin.c 
+			ft_isformat.c handle_n.c handle_str.c ft_strmemjoin.c \
+			handle_unsigned.c handle_ph.c handle_ptr.c ft_itohex.c \
+			ft_ptoi.c ft_uitoa.c ft_strtoupper.c handle_hex.c
 
 H_SRC	=	./libft/libft.h ft_printf.h
 

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptoi.c                                          :+:      :+:    :+:   */
+/*   handle_ph.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 18:16:08 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 20:37:27 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/04 19:59:17 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/07/04 20:03:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// NÃO ESQUECER DE ESCREVER '0x' ANTES DO RESULTADO
-unsigned long int	ft_ptoi(void *pointer)
+t_str	handle_ph(int *count)
 {
-	return ((unsigned long int)pointer);
+	t_str str;
+
+	str.s = ft_strdup("%");
+	str.size = 1;
+	*count += str.size;
+	return (str);
 }

@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptoi.c                                          :+:      :+:    :+:   */
+/*   handle_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 18:16:08 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 20:37:27 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/04 20:53:11 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/07/04 21:02:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#import "ft_printf.h"
 
-// NÃO ESQUECER DE ESCREVER '0x' ANTES DO RESULTADO
-unsigned long int	ft_ptoi(void *pointer)
+t_str handle_hex(va_list args, int *count, char c)
 {
-	return ((unsigned long int)pointer);
+	t_str	str;
+	int		temp;
+
+	temp = va_arg(args, int);
+	str.s = ft_itohex(temp);
+	str.size = ft_strlen(str.s);
+	*count += str.size;
+	if (c == 'X')
+		str.s = ft_strtoupper(str.s);
+	return (str);
 }

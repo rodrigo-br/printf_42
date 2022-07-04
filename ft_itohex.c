@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:25:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/01 18:44:06 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:13:45 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_count_hex_size(unsigned long int nb)
+static size_t	ft_count_hex_size(unsigned int nb)
 {
 	size_t	counter;
 
@@ -25,11 +25,12 @@ static size_t	ft_count_hex_size(unsigned long int nb)
 	return (counter);
 }
 
-char	*ft_itohex(unsigned	long int nb)
+char	*ft_itohex(unsigned int nb)
 {
 	const char	*hexmap = "0123456789abcdef";
 	char		*new_str;
 	size_t		size_hex;
+	char		*free_ret;
 
 	size_hex = ft_count_hex_size(nb);
 	new_str = (char *)malloc(sizeof(char) * (size_hex + 1));
@@ -39,5 +40,7 @@ char	*ft_itohex(unsigned	long int nb)
 		new_str[size_hex] = hexmap[nb % 16];
 		nb /= 16;
 	}
-	return (new_str);
+	free_ret = ft_strdup(new_str);
+	free(new_str);
+	return (free_ret);
 }
