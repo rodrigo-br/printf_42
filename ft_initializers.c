@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:38:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 17:26:50 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:18:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	ft_turn_false(t_flags *flags)
 	flags->bool_plus = FALSE;
 	flags->bool_end = FALSE;
 	flags->width_value = 0;
+	flags->precision_value = -1;
 }
 
 t_flags	ft_init_flags(const char *format_parsed)
@@ -37,7 +38,7 @@ t_flags	ft_init_flags(const char *format_parsed)
 	{
 		if (format_parsed[index] == ' ')
 			flags.bool_space = TRUE;
-		if (format_parsed[index] == '0')
+		if (format_parsed[index] == '0' && !width_bool)
 			flags.bool_zero = TRUE;
 		if (format_parsed[index] == '#')
 			flags.bool_hash = TRUE;

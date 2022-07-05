@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:53:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 21:02:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 05:09:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "ft_printf.h"
+#include "ft_printf.h"
 
-t_str handle_hex(va_list args, int *count, char c)
+t_str	handle_hex(va_list args, int *count, char c)
 {
 	t_str	str;
 	int		temp;

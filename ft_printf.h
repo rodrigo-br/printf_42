@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 22:10:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:58:35 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ typedef enum e_bool
 
 typedef struct s_flags
 {
+	int		precision_value;
+	int		width_value;
+	t_bool	bool_minus;
 	t_bool	bool_space;
 	t_bool	bool_zero;
 	t_bool	bool_hash;
-	t_bool	bool_dot;
-	t_bool	bool_minus;
 	t_bool	bool_plus;
+	t_bool	bool_dot;
 	t_bool	bool_end;
-	int		width_value;
 	char	spcf;
 }	t_flags;
 
@@ -77,5 +78,9 @@ t_str				handle_str(va_list args, int *count);
 t_str				handle_ptr(va_list args, int *count);
 t_str				handle_n(va_list args, int *count);
 t_str				handle_ph(int *count);
+/*--------------------------------------------------------------------------\
+|					FLAGS HANDLERS											|
+\--------------------------------------------------------------------------*/
+void				check_flags(t_str *str, t_flags flags, int *count);
 
 #endif

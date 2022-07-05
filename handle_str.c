@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:06:03 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 21:23:30 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 05:08:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_str	handle_str(va_list args, int *count)
 {
 	t_str	str;
 	char	*temp;
-	
+
 	temp = va_arg(args, char *);
 	if (temp == NULL)
 		str.s = ft_strdup("(null)");

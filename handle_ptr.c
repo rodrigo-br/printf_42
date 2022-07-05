@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:09:18 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 22:12:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:19:13 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_str	handle_ptr(va_list args, int *count)
 {
 	unsigned long int	ptr;
 	t_str				str;
-	char				*temp;
 	void				*void_tmp;
 
 	void_tmp = va_arg(args, void *);
@@ -28,10 +27,8 @@ t_str	handle_ptr(va_list args, int *count)
 	}
 	else
 	{
-		temp = ft_uitohex(ptr);
-		str.s = ft_strmemjoin("0x", temp, 2, ft_strlen(temp));
+		str.s = ft_uitohex(ptr);
 		str.size = ft_strlen(str.s);
-		free(temp);
 	}
 	*count += str.size;
 	return (str);

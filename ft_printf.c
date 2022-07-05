@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 20:53:49 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:24:57 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	simple_print(const char *s, int *size)
 {
-	char *temp;
-	
+	char	*temp;
+
 	temp = ft_strtilchr(s, '%');
 	*size += ft_strlen(temp);
 	ft_putstr_fd(temp, 1);
@@ -28,8 +28,8 @@ static t_str	check_specifier(const char *format, va_list args, \
 t_flags flags, int *count)
 {
 	t_str	str;
+
 	(void) format;
-	
 	str.s = "";
 	str.size = 0;
 	if (flags.spcf == 'c')
@@ -49,29 +49,39 @@ t_flags flags, int *count)
 	return (str);
 }
 
-static int	parse_format(const char *format, va_list args, int *count)
+static int	check_width_n_precision(const char *format, t_flags *flags)
 {
 	int		index;
 	t_bool	width;
-	t_flags flags;
-	t_str	str_parsed;
 
-	width = FALSE;
 	index = 0;
-	flags = ft_init_flags(format);
+	width = FALSE;
 	while (ft_isformat(format[index], &width))
 	{
-		if (width && flags.width_value == 0)
+		if (width && (*flags).width_value == 0 && format[index -1] != '.')
 		{
-			flags.width_value = atoi(&format[index]);
+			(*flags).width_value = atoi(&format[index]);
 			width = FALSE;
 		}
+		else if (format[index - 1] == '.')
+			(*flags).precision_value = atoi(&format[index]);
 		index++;
 	}
+	return (index);
+}
+
+static int	parse_format(const char *format, va_list args, int *count)
+{
+	int		index;
+	t_flags	flags;
+	t_str	str_parsed;
+
+	flags = ft_init_flags(format);
+	index = check_width_n_precision(format, &flags);
 	str_parsed = check_specifier(format, args, flags, count);
+	check_flags(&str_parsed, flags, count);
 	write(1, str_parsed.s, str_parsed.size);
 	free(str_parsed.s);
-
 	return (index + 1);
 }
 
@@ -83,7 +93,7 @@ int	ft_printf(const char *format, ...)
 	count = 0;
 	simple_print(format, &count);
 	va_start(args, format);
-	while(*format)
+	while (*format)
 	{
 		if (*format == '%')
 		{
