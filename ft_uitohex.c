@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itohex.c                                        :+:      :+:    :+:   */
+/*   ft_uitohex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:25:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 21:49:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:09:56 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_count_hex_size(unsigned int nb)
+static size_t	ft_count_hex_size(unsigned long int nb)
 {
 	size_t	counter;
 
@@ -25,7 +25,7 @@ static size_t	ft_count_hex_size(unsigned int nb)
 	return (counter);
 }
 
-char	*ft_itohex(unsigned int nb)
+char	*ft_uitohex(unsigned long int nb)
 {
 	const char	*hexmap = "0123456789abcdef";
 	char		*new_str;

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 21:00:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:10:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 /*--------------------------------------------------------------------------\
 |					LIBRARY INCLUDES										|
 \--------------------------------------------------------------------------*/
+# include "libft/libft.h"
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft/libft.h"
-# include <stdio.h> // APAGAR ESSA DISGRAMA!
-# include <limits.h> // APAGAR ESSA AQUI TAMBÉM!
+# include <limits.h> // APAGAR ESSA DISGRAMA!
+# include <stdio.h> // APAGAR ESSA AQUI TAMBÉM!
 
 /*--------------------------------------------------------------------------\
 |					TYPEDEF DECLARATIONS									|
@@ -53,14 +53,15 @@ typedef struct s_str
 /*--------------------------------------------------------------------------\
 |					NEW LIBFT FUNCTIONS										|
 \--------------------------------------------------------------------------*/
-int					ft_printf(const char *format, ...);
 void				*ft_strmemjoin(void *s1, void *s2, size_t size_s1, \
 size_t size_s2);
-char				*ft_uitoa(unsigned int n);
-unsigned long int	ft_ptoi(void *pointer);
-char				*ft_itohex(unsigned int nb);
 char				*ft_strtilchr(const char *s, int c);
+int					ft_printf(const char *format, ...);
+char				*ft_uitohex(unsigned long int nb);
+char				*ft_itohex(unsigned int nb);
+char				*ft_uitoa(unsigned int n);
 char				*ft_strtoupper(char *s);
+unsigned long int	ft_ptoi(void *pointer);
 /*--------------------------------------------------------------------------\
 |					PRINTFT AUX FUNCTIONS									|
 \--------------------------------------------------------------------------*/

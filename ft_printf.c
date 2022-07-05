@@ -71,7 +71,7 @@ static int	parse_format(const char *format, va_list args, int *count)
 	str_parsed = check_specifier(format, args, flags, count);
 	write(1, str_parsed.s, str_parsed.size);
 	free(str_parsed.s);
-	
+
 	return (index + 1);
 }
 
