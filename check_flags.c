@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:28:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/06 02:32:49 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:02:48 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 {
 	flags.width_value -= str->size;
 
+	if (flags.bool_plus && (flags.spcf == 'p' 
+		|| flags.spcf == 'd' || flags.spcf == 'i')
+		&& !ft_strchr(str->s, '-'))
+	{
+		write(1, "+", 1);
+		*count += 1;
+		flags.bool_space = FALSE;
+	}
+	else if (flags.bool_space && (flags.spcf == 'p' 
+		|| flags.spcf == 'd' || flags.spcf == 'i')
+		&& !ft_strchr(str->s, '-'))
+	{
+		write(1, " ", 1);
+		*count += 1;
+	}
 	if ((flags.spcf == 'p' && !ft_strnstr(str->s, "(nil)", 5)) \
 		|| flags.bool_hash)
 		funcao_do_renan(str, flags, count);
