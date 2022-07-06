@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/06 02:14:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/06 21:28:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static int	check_width_n_precision(const char *format, t_flags *flags)
 			flags->precision_value = atoi(&format[index]);
 		index++;
 	}
-	if (flags->spcf == 'p' || flags->bool_hash)
-		flags->width_value -= 2;
 	return (index);
 }
 
