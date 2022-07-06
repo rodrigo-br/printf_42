@@ -18,6 +18,8 @@ SRC		=	ft_bzero.c ft_isalnum.c ft_isalpha.c \
 
 SRC_LIB	=	${addprefix libft/, ${SRC}}
 
+OBJS_DIR    =    obj/
+
 SRC_PRNT =	ft_printf.c ft_strtilchr.c handle_char.c ft_initializers.c \
 			ft_isformat.c handle_n.c handle_str.c ft_strmemjoin.c \
 			handle_unsigned.c handle_ph.c handle_ptr.c ft_itohex.c \
@@ -26,7 +28,7 @@ SRC_PRNT =	ft_printf.c ft_strtilchr.c handle_char.c ft_initializers.c \
 
 H_SRC	=	./libft/libft.h ft_printf.h
 
-OBJS	=	${SRC_LIB:.c=.o} ${SRC_PRNT:.c=.o}
+OBJS	=	${SRC_LIB:.c=$(OBJS_DIR)%.o} ${SRC_PRNT:.c=$(OBJS_DIR)%.o}
 
 NAME	=	libftprintf.a
 
@@ -35,12 +37,14 @@ FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 
 .c.o:
-			cc ${FLAGS} -c $< -o ${<:.c=.o} 
+			cc ${FLAGS} -c $< -o ${<:.c=$(OBJS_DIR)%.o} 
 
 $(NAME):	${OBJS} ${H_SRC}
 			ar -rcs $@ $^
 
 all: 		${NAME}
+
+bonus:		all
 
 clean:
 			${RM} ${OBJS}

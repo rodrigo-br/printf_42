@@ -6,12 +6,10 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/05 21:24:57 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/06 02:14:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 void	simple_print(const char *s, int *size)
@@ -58,15 +56,17 @@ static int	check_width_n_precision(const char *format, t_flags *flags)
 	width = FALSE;
 	while (ft_isformat(format[index], &width))
 	{
-		if (width && (*flags).width_value == 0 && format[index -1] != '.')
+		if (width && flags->width_value == 0 && format[index -1] != '.')
 		{
-			(*flags).width_value = atoi(&format[index]);
+			flags->width_value = atoi(&format[index]);
 			width = FALSE;
 		}
 		else if (format[index - 1] == '.')
-			(*flags).precision_value = atoi(&format[index]);
+			flags->precision_value = atoi(&format[index]);
 		index++;
 	}
+	if (flags->spcf == 'p' || flags->bool_hash)
+		flags->width_value -= 2;
 	return (index);
 }
 
