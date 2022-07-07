@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/06 20:54:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 01:42:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_flags
 	t_bool	bool_plus;
 	t_bool	bool_dot;
 	t_bool	bool_end;
+	t_bool	null;
 	char	spcf;
 }	t_flags;
 

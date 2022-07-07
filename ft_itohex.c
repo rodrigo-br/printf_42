@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:25:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/04 21:49:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 00:09:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ char	*ft_itohex(unsigned int nb)
 	size_hex = ft_count_hex_size(nb);
 	new_str = (char *)malloc(sizeof(char) * (size_hex + 1));
 	new_str[size_hex] = '\0';
-	while (size_hex--)
+	while (size_hex)
 	{
+		size_hex -= 1;
 		new_str[size_hex] = hexmap[nb % 16];
 		nb /= 16;
 	}

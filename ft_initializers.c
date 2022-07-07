@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:38:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/05 20:18:58 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 00:35:56 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	ft_turn_false(t_flags *flags)
 	flags->bool_minus = FALSE;
 	flags->bool_plus = FALSE;
 	flags->bool_end = FALSE;
+	flags->null = FALSE;
 	flags->width_value = 0;
 	flags->precision_value = -1;
 }
