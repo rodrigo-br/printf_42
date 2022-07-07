@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_str	handle_char(va_list args, int *count)
+t_str	handle_char(va_list args, int *count, t_flags *flags)
 {
 	t_str	c;
 	char	temp[2];
@@ -25,6 +25,7 @@ t_str	handle_char(va_list args, int *count)
 	{
 		c.s = (char *)malloc(sizeof(char) * 1);
 		c.s[0] = '\0';
+		flags->null = TRUE;
 	}
 	c.size = 1;
 	*count += c.size;

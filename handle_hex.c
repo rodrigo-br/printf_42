@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_str	handle_hex(va_list args, int *count, char c)
+t_str	handle_hex(va_list args, int *count, t_flags *flags)
 {
 	t_str	str;
 	int		temp;
@@ -21,7 +21,9 @@ t_str	handle_hex(va_list args, int *count, char c)
 	str.s = ft_itohex(temp);
 	str.size = ft_strlen(str.s);
 	*count += str.size;
-	if (c == 'X')
+	if (flags->spcf == 'X')
 		str.s = ft_strtoupper(str.s);
+	if (str.size == 1 && str.s[0] == '0')
+		flags->null = TRUE;
 	return (str);
 }

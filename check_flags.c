@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:28:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 02:36:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 04:08:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,45 @@ static void	handle_dot(t_str *str, t_flags *flags, int *count)
 			}
 		}
 	}
+	if (flags->spcf != 's' && flags->spcf != 'c' && flags->spcf != 'p'
+		&& str->size == 1 && str->s[0] == '0')
+	{
+		*count -= 1;
+		str->size = 0;
+	}
 	else if (flags->spcf == 's' && flags->precision_value < str->size)
 	{
-		if (flags->precision_value >= 1)
+		if (!flags->null)
 		{
-			str->temp = ft_substr(str->s, 0, flags->precision_value);
-			free(str->s);
-			str->s = ft_strdup(str->temp);
-			free(str->temp);
-			*count -= str->size - flags->precision_value;
-			str->size = flags->precision_value;
+			if (flags->precision_value >= 1)
+			{
+				str->temp = ft_substr(str->s, 0, flags->precision_value);
+				free(str->s);
+				str->s = ft_strdup(str->temp);
+				free(str->temp);
+				*count -= str->size - flags->precision_value;
+				str->size = flags->precision_value;
+			}
+			else
+			{
+				free(str->s);
+				str->s = ft_strdup("");
+				*count -= str->size;
+				str->size = 0;
+			}
 		}
 		else
 		{
-			free(str->s);
-			str->s = ft_strdup("");
-			*count -= str->size;
-			str->size = 0;
+			if (flags->precision_value < 6)
+			{
+				*count -= str->size;
+				str->size = 0;
+			}
+			else
+			{
+				str->size = 0;
+				write(1, "(null)", 6);
+			}
 		}
 	}
 }
@@ -100,7 +122,7 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 	if (((flags.spcf == 'x' || flags.spcf == 'X') && flags.bool_hash)
 		|| flags.spcf == 'p')
 		funcao_do_renan(str, &flags, count);
-	if (flags.bool_dot && flags.spcf != 'c' && !flags.null)
+	if (flags.bool_dot && flags.spcf != 'c')
 		handle_dot(str, &flags, count);
 	flags.width_value -= str->size;
 	if (flags.width_value > 0 && !flags.bool_minus)

@@ -15,7 +15,7 @@ FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 
 .c.o:
-			cc ${FLAGS} -c $< -o ${<:.c=.o} 
+			cc ${FLAGS} -c $< -o ${<:.c=.o} -I.
 
 $(NAME):	${OBJS} ${H_SRC}
 			make -C ./libft
@@ -24,10 +24,10 @@ $(NAME):	${OBJS} ${H_SRC}
 
 all: 		${NAME}
 
-bonus:		${OBJS} ${H_SRC}
+bonus:		all
 			make -C ./libft
 			mv ./libft/libft.a ./$(NAME)
-			ar -rcs $@ $^
+			ar -rcs $(NAME) ${OBJS} ${H_SRC}
 
 clean:
 			${RM} ${OBJS}

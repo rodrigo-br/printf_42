@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_str	handle_ptr(va_list args, int *count)
+t_str	handle_ptr(va_list args, int *count, t_flags *flags)
 {
 	unsigned long int	ptr;
 	t_str				str;
@@ -24,6 +24,7 @@ t_str	handle_ptr(va_list args, int *count)
 	{
 		str.s = ft_strdup("(nil)");
 		str.size = 5;
+		flags->null = TRUE;
 	}
 	else
 	{

@@ -23,26 +23,26 @@ void	simple_print(const char *s, int *size)
 }
 
 static t_str	check_specifier(const char *format, va_list args, \
-t_flags flags, int *count)
+t_flags *flags, int *count)
 {
 	t_str	str;
 
 	(void) format;
 	str.s = "";
 	str.size = 0;
-	if (flags.spcf == 'c')
-		str = handle_char(args, count);
-	else if (flags.spcf == 'i' || flags.spcf == 'd')
+	if (flags->spcf == 'c')
+		str = handle_char(args, count, flags);
+	else if (flags->spcf == 'i' || flags->spcf == 'd')
 		str = handle_n(args, count);
-	else if (flags.spcf == 's')
-		str = handle_str(args, count);
-	else if (flags.spcf == 'u')
+	else if (flags->spcf == 's')
+		str = handle_str(args, count, flags);
+	else if (flags->spcf == 'u')
 		str = handle_unsigned(args, count);
-	else if (flags.spcf == 'p')
-		str = handle_ptr(args, count);
-	else if (flags.spcf == 'x' || flags.spcf == 'X')
-		str = handle_hex(args, count, flags.spcf);
-	else if (flags.spcf == '%')
+	else if (flags->spcf == 'p')
+		str = handle_ptr(args, count, flags);
+	else if (flags->spcf == 'x' || flags->spcf == 'X')
+		str = handle_hex(args, count, flags);
+	else if (flags->spcf == '%')
 		str = handle_ph(count);
 	return (str);
 }
@@ -76,7 +76,7 @@ static int	parse_format(const char *format, va_list args, int *count)
 
 	flags = ft_init_flags(format);
 	index = check_width_n_precision(format, &flags);
-	str_parsed = check_specifier(format, args, flags, count);
+	str_parsed = check_specifier(format, args, &flags, count);
 	check_flags(&str_parsed, flags, count);
 	write(1, str_parsed.s, str_parsed.size);
 	free(str_parsed.s);

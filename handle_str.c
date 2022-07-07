@@ -12,14 +12,17 @@
 
 #include "ft_printf.h"
 
-t_str	handle_str(va_list args, int *count)
+t_str	handle_str(va_list args, int *count, t_flags *flags)
 {
 	t_str	str;
 	char	*temp;
 
 	temp = va_arg(args, char *);
 	if (temp == NULL)
+	{
 		str.s = ft_strdup("(null)");
+		flags->null = TRUE;
+	}
 	else
 		str.s = ft_strdup(temp);
 	str.size = ft_strlen(str.s);
