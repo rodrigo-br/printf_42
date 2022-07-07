@@ -25,13 +25,11 @@ $(NAME):	${OBJS} ${H_SRC}
 
 all: 		${NAME}
 
-bonus:		all
-			make -C ./libft
-			mv ./libft/libft.a ./$(NAME)
-			ar -rcs $(NAME) ${OBJS} ${H_SRC}
+bonus:		${NAME}
 
 clean:
 			${RM} ${OBJS}
+			make clean -C ./libft
 
 fclean:		clean
 			${RM} ${NAME}

@@ -6,20 +6,26 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 07:30:17 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 07:43:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 09:02:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	handle_space(t_str *str, int *count)
+static void	handle_space(t_str *str, t_flags *flags, int *count)
 {
-	str->temp = ft_strjoin(" ", str->s);
-	free(str->s);
-	str->s = ft_strdup(str->temp);
-	free(str->temp);
-	str->size += 1;
-	*count += 1;
+	if (!(flags->bool_minus && flags->width_value > str->size))
+	{
+		str->temp = ft_strjoin(" ", str->s);
+		free(str->s);
+		str->s = ft_strdup(str->temp);
+		free(str->temp);
+	}
+	if (!flags->bool_minus)
+	{
+		str->size += 1;
+		*count += 1;
+	}
 }
 
 static void	handle_minus_with_c(t_str *str, t_flags *flags, int *count)
@@ -59,7 +65,7 @@ void	handle_minus_n_spac(t_str *str, t_flags *flags, int *count)
 			|| flags->spcf == 'd' || flags->spcf == 'i')
 		&& !ft_strchr(str->s, '-') && !ft_strchr(str->s, 'n')
 		&& flags->spcf != 'c')
-		handle_space(str, count);
+		handle_space(str, flags, count);
 	if (flags->bool_minus && flags->width_value > 0 && flags->spcf == 'c')
 		handle_minus_with_c(str, flags, count);
 }

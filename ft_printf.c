@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 04:35:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 08:22:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ void	simple_print(const char *s, int *size)
 	free(temp);
 }
 
-static t_str	check_specifier(const char *format, va_list args, \
-t_flags *flags, int *count)
+static t_str	check_specifier(va_list args, t_flags *flags, int *count)
 {
 	t_str	str;
 
-	(void) format;
 	str.s = "";
 	str.size = 0;
 	if (flags->spcf == 'c')
@@ -76,7 +74,7 @@ static int	parse_format(const char *format, va_list args, int *count)
 
 	flags = ft_init_flags(format);
 	index = check_width_n_precision(format, &flags);
-	str_parsed = check_specifier(format, args, &flags, count);
+	str_parsed = check_specifier(args, &flags, count);
 	check_flags(&str_parsed, flags, count);
 	write(1, str_parsed.s, str_parsed.size);
 	free(str_parsed.s);

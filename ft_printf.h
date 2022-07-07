@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 07:32:30 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 07:49:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ void				handle_minus_n_spac(t_str *str, t_flags *flags, int *count);
 void				check_flags(t_str *str, t_flags flags, int *count);
 void				handle_dot(t_str *str, t_flags *flags, int *count);
 void				handle_zero(t_str *str, t_flags *flags);
+
 #endif

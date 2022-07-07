@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 06:54:53 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 07:25:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 08:45:12 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	handle_numerals_no_signals(t_str *str, t_flags *flags, int *count)
 {
-	if (flags->bool_hash)
+	if (flags->bool_hash && (flags->spcf == 'X' || flags->spcf == 'x'))
 		flags->precision_value += 2;
 	while (flags->precision_value > str->size)
 	{
@@ -25,7 +25,7 @@ static void	handle_numerals_no_signals(t_str *str, t_flags *flags, int *count)
 		*count += 1;
 		str->size += 1;
 	}
-	if (flags->bool_hash)
+	if (flags->bool_hash && (flags->spcf == 'X' || flags->spcf == 'x'))
 	{
 		str->s[1] = flags->spcf;
 		if (flags->spcf == 'p')
