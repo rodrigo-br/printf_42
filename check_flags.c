@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:28:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 04:08:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 04:48:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	handle_dot(t_str *str, t_flags *flags, int *count)
 		*count -= 1;
 		str->size = 0;
 	}
-	else if (flags->spcf == 's' && flags->precision_value < str->size)
+	if (flags->spcf == 's' && flags->precision_value < str->size)
 	{
 		if (!flags->null)
 		{
@@ -175,10 +175,10 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 			str->size += 1;
 		}
 	}
-		if (flags.bool_space && (flags.spcf == 'p'
-			|| flags.spcf == 'd' || flags.spcf == 'i')
-			&& !ft_strchr(str->s, '-') && !ft_strchr(str->s, 'n')
-			&& flags.spcf != 'c')
+	if (flags.bool_space && (flags.spcf == 'p'
+		|| flags.spcf == 'd' || flags.spcf == 'i')
+		&& !ft_strchr(str->s, '-') && !ft_strchr(str->s, 'n')
+		&& flags.spcf != 'c')
 	{
 		str->temp = ft_strjoin(" ", str->s);
 		free(str->s);
@@ -199,4 +199,7 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 			index++;
 		}
 	}
+	if (flags.spcf != 's' && flags.spcf != 'p' && flags.null
+		&& flags.bool_minus && flags.bool_dot && flags.precision_value < 1)
+		str->s[0] = ' ';
 }

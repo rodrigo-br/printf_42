@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 20:14:45 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 03:07:48 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 04:34:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ t_bool				ft_isformat(char c, t_bool *width);
 /*--------------------------------------------------------------------------\
 |					SPECIFIERS HANDLERS										|
 \--------------------------------------------------------------------------*/
+t_str				handle_unsigned(va_list args, int *count, t_flags *flags);
 t_str				handle_char(va_list args, int *count, t_flags *flags);
 t_str				handle_str(va_list args, int *count, t_flags *flags);
 t_str				handle_ptr(va_list args, int *count, t_flags *flags);
 t_str				handle_hex(va_list args, int *count, t_flags *flags);
-t_str				handle_unsigned(va_list args, int *count);
-t_str				handle_n(va_list args, int *count);
+t_str				handle_n(va_list args, int *count, t_flags *flags);
 t_str				handle_ph(int *count);
 /*--------------------------------------------------------------------------\
 |					FLAGS HANDLERS											|
