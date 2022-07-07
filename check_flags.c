@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:28:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 04:48:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 05:47:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ static void	funcao_do_renan(t_str *str, t_flags *flags, int *count)
 
 static void	handle_dot(t_str *str, t_flags *flags, int *count)
 {
-	if (flags->spcf != 's' && !ft_strchr(str->s, '-'))
+	if (flags->spcf != 's' && !ft_strchr(str->s, '-')
+		&& !ft_strchr(str->s, '+'))
 	{
+		if (flags->bool_hash)
+			flags->precision_value += 2;
 		while (flags->precision_value > str->size)
 		{
 			str->temp = ft_strjoin("0", str->s);
@@ -43,14 +46,24 @@ static void	handle_dot(t_str *str, t_flags *flags, int *count)
 			*count += 1;
 			str->size += 1;
 		}
+		if (flags->bool_hash)
+		{
+			str->s[1] = flags->spcf;
+			if (flags->spcf == 'p')
+				str->s[1] = 'x';
+			str->s[flags->precision_value - 2] = '0';
+		}
 	}
-	else if (flags->spcf != 's' && ft_strchr(str->s, '-'))
+	else if (flags->spcf != 's' && (ft_strchr(str->s, '-')
+			|| ft_strchr(str->s, '+')))
 	{
 		if (flags->precision_value >= str->size)
 		{
 			while (flags->precision_value >= str->size)
 			{
 				str->temp = ft_strjoin("-0", &str->s[1]);
+				if (ft_strchr(str->s, '+'))
+					str->temp[0] = '+';
 				free(str->s);
 				str->s = ft_strdup(str->temp);
 				free(str->temp);
@@ -139,7 +152,7 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 		}
 	}
 	if (flags.bool_zero && !flags.bool_minus && flags.width_value > 0
-			&& flags.spcf != 's' && flags.spcf != 'c')
+			&& flags.spcf != 's' && flags.spcf != 'c' && !flags.bool_dot)
 	{
 		index = 0;
 		while (flags.width_value > index)
@@ -200,6 +213,9 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 		}
 	}
 	if (flags.spcf != 's' && flags.spcf != 'p' && flags.null
-		&& flags.bool_minus && flags.bool_dot && flags.precision_value < 1)
+		&& flags.bool_dot && flags.precision_value < 1)
 		str->s[0] = ' ';
+	if (flags.bool_zero && flags.bool_dot && flags.null
+		&& flags.width_value == 1 && flags.precision_value == 1)
+		str->s[0] = '0';
 }
