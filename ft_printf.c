@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 23:55:26 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 08:22:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:50:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	simple_print(const char *s, int *size)
+static void	simple_print(const char *s, int *size)
 {
 	char	*temp;
 
@@ -52,7 +52,7 @@ static int	check_width_n_precision(const char *format, t_flags *flags)
 
 	index = 0;
 	width = FALSE;
-	while (ft_isformat(format[index], &width))
+	while (ft_isformat(format[index], &width, format))
 	{
 		if (width && flags->width_value == 0 && format[index -1] != '.')
 		{
@@ -73,11 +73,20 @@ static int	parse_format(const char *format, va_list args, int *count)
 	t_str	str_parsed;
 
 	flags = ft_init_flags(format);
-	index = check_width_n_precision(format, &flags);
-	str_parsed = check_specifier(args, &flags, count);
-	check_flags(&str_parsed, flags, count);
-	write(1, str_parsed.s, str_parsed.size);
-	free(str_parsed.s);
+	if (ft_strchr("cspdiuxX%", flags.spcf))
+	{
+		index = check_width_n_precision(format, &flags);
+		str_parsed = check_specifier(args, &flags, count);
+		check_flags(&str_parsed, flags, count);
+		write(1, str_parsed.s, str_parsed.size);
+		free(str_parsed.s);
+	}
+	else
+	{
+		write(1, "%", 1);
+		*count += 1;
+		index = -1;
+	}
 	return (index + 1);
 }
 

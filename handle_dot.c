@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 06:54:53 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 08:45:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:40:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	handle_dot(t_str *str, t_flags *flags, int *count)
 			|| ft_strchr(str->s, '+')))
 		handle_numerals_with_signals(str, flags, count);
 	if (flags->spcf != 's' && flags->spcf != 'c' && flags->spcf != 'p'
-		&& str->size == 1 && str->s[0] == '0')
+		&& flags->null && flags->precision_value < 1)
 	{
 		*count -= 1;
 		str->size = 0;

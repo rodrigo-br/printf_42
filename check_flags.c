@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:28:11 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/07/07 07:39:56 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/07/08 15:23:53 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,5 @@ void	check_flags(t_str *str, t_flags flags, int *count)
 		&& flags.width_value == 1 && flags.precision_value == 1)
 		str->s[0] = '0';
 }
+
+//precisão > tamanho no ponteiro
