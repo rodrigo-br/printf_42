@@ -135,3 +135,43 @@ An optional precision, in the form of a period ('.')  followed by
 
 Examples of width and precision:<br>
 <img src="printf_6.png">
+
+### Conversion specifiers
+
+<ul>
+	<li>d, i<br>  The int argument is converted to signed decimal notation.
+              The precision, if any, gives the minimum number of digits
+              that must appear; if the converted value requires fewer
+              digits, it is padded on the left with zeros.  The default
+              precision is 1.  When 0 is printed with an explicit
+              precision 0, the output is empty</li>
+	<br><li>u, x, X<br>The unsigned int argument is converted to unsigned decimal (u), or unsigned hexadecimal (x and
+              X) notation.  The letters abcdef are used for x
+              conversions; the letters ABCDEF are used for X
+              conversions.  The precision, if any, gives the minimum
+              number of digits that must appear; if the converted value
+              requires fewer digits, it is padded on the left with
+              zeros.  The default precision is 1.  When 0 is printed
+              with an explicit precision 0, the output is empty.</li>
+	<br><li>c<br>the int argument is converted
+              to an unsigned char, and the resulting character is
+              written.</li>
+	<br><li>s<br>the const char * argument is
+              expected to be a pointer to an array of character type
+              (pointer to a string).  Characters from the array are
+              written up to (but not including) a terminating null byte
+              ('\0'); if a precision is specified, no more than the
+              number specified are written.  If a precision is given, no
+              null byte need be present; if the precision is not
+              specified, or is greater than the size of the array, the
+              array must contain a terminating null byte.</li>
+	<br><li>p<br>The void * pointer argument is printed in hexadecimal as if by %#x</li>
+	<br><li>%<br>A '%' is written.  No argument converted.  The complete conversion specification is '%%'.</li>
+
+<br>
+
+### Return Value
+
+Return the number of
+    characters printed (excluding the null byte used to end output to
+       strings).
